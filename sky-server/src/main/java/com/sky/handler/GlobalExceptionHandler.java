@@ -1,6 +1,7 @@
 package com.sky.handler;
 
 import com.sky.exception.BaseException;
+import com.sky.exception.EmpolyeeInsertFailedException;
 import com.sky.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,4 +25,9 @@ public class GlobalExceptionHandler {
         return Result.error(ex.getMessage());
     }
 
+    @ExceptionHandler
+    public Result EmployeeInsertHandler(EmpolyeeInsertFailedException e) {
+        log.error("error: {}", e.getMessage());
+        return Result.error(e.getMessage());
+    }
 }
